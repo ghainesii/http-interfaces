@@ -1,12 +1,12 @@
 package net.ghaines.httpinterfaces.controller;
 
 import net.ghaines.httpinterfaces.client.BreweryClient;
+import net.ghaines.httpinterfaces.exception.BreweryException;
 import net.ghaines.httpinterfaces.model.Brewery;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -19,11 +19,12 @@ public class BreweryController {
         this.breweryClient = breweryClient;
     }
 
-    @GetMapping("/brewery")
-    public Object byName(@RequestParam(value = "name", required = false) String name) {
+    @GetMapping("/brewery/{name}")
+    public ResponseEntity<List<Brewery>> byName(@PathVariable(value = "name") String name)
+            throws BreweryException {
         List<Brewery> brewery = breweryClient.byName(name);
         if (brewery.isEmpty()) {
-            return ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, "Could not find brewery");
+            throw new BreweryException("Could not find brewery");
         }
         return ResponseEntity.status(HttpStatus.OK).body(brewery);
     }
