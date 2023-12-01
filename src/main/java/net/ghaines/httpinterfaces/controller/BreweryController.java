@@ -1,6 +1,5 @@
 package net.ghaines.httpinterfaces.controller;
 
-import lombok.RequiredArgsConstructor;
 import net.ghaines.httpinterfaces.client.BreweryClient;
 import net.ghaines.httpinterfaces.exception.BreweryException;
 import net.ghaines.httpinterfaces.model.Brewery;
@@ -12,10 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
 public class BreweryController {
 
     private final BreweryClient breweryClient;
+
+    public BreweryController(BreweryClient breweryClient) {
+        this.breweryClient = breweryClient;
+    }
 
     @GetMapping("/brewery/{name}")
     public ResponseEntity<List<Brewery>> byName(@PathVariable(value = "name") String name)
