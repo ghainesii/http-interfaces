@@ -1,6 +1,5 @@
-package net.ghaines.httpinterfaces.controller;
+package net.ghaines.httpinterfaces.brewery;
 
-import net.ghaines.httpinterfaces.exception.BreweryException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -9,7 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class BreweryControllerAdvice {
+class BreweryControllerAdvice {
     private static final Logger log = LoggerFactory.getLogger(BreweryControllerAdvice.class);
 
     @ExceptionHandler(BreweryException.class)

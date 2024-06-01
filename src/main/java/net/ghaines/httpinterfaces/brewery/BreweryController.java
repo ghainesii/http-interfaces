@@ -1,8 +1,5 @@
-package net.ghaines.httpinterfaces.controller;
+package net.ghaines.httpinterfaces.brewery;
 
-import net.ghaines.httpinterfaces.client.BreweryClient;
-import net.ghaines.httpinterfaces.exception.BreweryException;
-import net.ghaines.httpinterfaces.model.Brewery;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,16 +8,16 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class BreweryController {
+class BreweryController {
 
     private final BreweryClient breweryClient;
 
-    public BreweryController(BreweryClient breweryClient) {
+    BreweryController(BreweryClient breweryClient) {
         this.breweryClient = breweryClient;
     }
 
     @GetMapping("/brewery/{name}")
-    public ResponseEntity<List<Brewery>> byName(@PathVariable(value = "name") String name)
+    ResponseEntity<List<Brewery>> byName(@PathVariable(value = "name") String name)
             throws BreweryException {
         List<Brewery> brewery = breweryClient.byName(name);
         if (brewery.isEmpty()) {

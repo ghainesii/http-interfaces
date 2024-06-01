@@ -1,8 +1,5 @@
-package net.ghaines.httpinterfaces.controller;
+package net.ghaines.httpinterfaces.brewery;
 
-import net.ghaines.httpinterfaces.client.BreweryClient;
-import net.ghaines.httpinterfaces.exception.BreweryException;
-import net.ghaines.httpinterfaces.model.Brewery;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -13,7 +10,8 @@ import org.springframework.http.ResponseEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 class BreweryControllerTest {
